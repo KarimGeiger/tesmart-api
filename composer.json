@@ -1,0 +1,20 @@
+{
+    "name": "karimgeiger/tesmart-api",
+    "description": "PHP API-wrapper for tesmart KVM switches",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TesmartApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Karim Geiger",
+            "email": "karim@tyvr.net"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    }
+}
