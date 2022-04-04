@@ -1,13 +1,13 @@
-# PHP API Wrapper for tesmart KVM Switches
+# PHP API Wrapper for TESmart KVM Switches
 
-**Note:** This is **not** an official library, nor is it related to tesmart in any way.
+**Note:** This is **not** an official library, nor is it related to TESmart in any way.
 
-This library implements the HDMI Switch (KVM) communication protocol by tesmart and provides
+This library implements the HDMI Switch (KVM) communication protocol by TESmart and provides
 a simple PHP wrapper to control the switch.
 
 ## Tested with
 
-This library has only been tested with the 16x1 tesmart KVM switch.
+This library has only been tested with the 16x1 TESmart KVM switch.
 
 ## Current features
 

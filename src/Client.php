@@ -2,6 +2,7 @@
 
 namespace TesmartApi;
 
+use InvalidArgumentException;
 use TesmartApi\Exception\ConnectionException;
 
 class Client
@@ -24,6 +25,21 @@ class Client
     }
 
     /**
+     * Set the KVM switch to the given input.
+     *
+     * @param int $input 1 = PC1, 2 = PC2, ..., 16 = PC16
+     * @throws InvalidArgumentException
+     * @throws ConnectionException
+     */
+    public function setInput(int $input): void
+    {
+        if ($input < 1 || $input > 0xFF) {
+            throw new InvalidArgumentException('Invalid range for input.');
+        }
+        $this->sendCommand(0x01, $input);
+    }
+
+    /**
      * Enable or disable the buzzer.
      *
      * @throws ConnectionException
@@ -37,22 +53,15 @@ class Client
      * Set the LED timeout.
      *
      * @param int $seconds timeout in seconds. 0 = never
+     * @throws InvalidArgumentException
      * @throws ConnectionException
      */
     public function setLedTimeout(int $seconds): void
     {
+        if ($seconds < 0 || $seconds > 0xFF) {
+            throw new InvalidArgumentException('Invalid range for seconds.');
+        }
         $this->sendCommand(0x03, $seconds);
-    }
-
-    /**
-     * Set the KVM switch to the given input.
-     *
-     * @param int $input 1 = PC1, 2 = PC2, ..., 16 = PC16
-     * @throws ConnectionException
-     */
-    public function setInput(int $input): void
-    {
-        $this->sendCommand(0x01, $input);
     }
 
     /**

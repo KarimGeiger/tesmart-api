@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-$client = new \TesmartApi\Client('192.168.10.10');
+$client = new \TesmartApi\Client('192.168.1.10');
 
 echo "current input: " . $client->getInput() . "\n";
 
