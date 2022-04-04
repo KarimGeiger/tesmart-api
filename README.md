@@ -37,7 +37,7 @@ composer require karimgeiger/tesmart-api
 2. Initialize the client in your project:
 
 ```php
-$client = new \TesmartApi\Client('192.168.10.10', 5000);
+$client = new \TesmartApi\Client('192.168.1.10', 5000);
 ```
 
 3. Use the client:
