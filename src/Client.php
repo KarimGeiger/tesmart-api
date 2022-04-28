@@ -72,19 +72,25 @@ class Client
     private function sendCommand(int $command, int $param = 0x00): array
     {
         // Open connection
-        $fp = fsockopen('tcp://' . $this->ip, $this->port, $error_code, $error_message, $this->timeout);
-        stream_set_blocking($fp, 0);
+        $fp = @fsockopen('tcp://' . $this->ip, $this->port, $error_code, $error_message, $this->timeout);
+
         if (!$fp) {
             throw new ConnectionException($error_message, $error_code);
         }
+
+        stream_set_blocking($fp, 0);
 
         // send command
         $data = pack('c6', 0xAA, 0xBB, 0x03, $command, $param, 0xEE);
         fwrite($fp, $data);
 
-        // wait and fetch response
+        // wait to fetch response
         usleep(2000);
-        while (!$out = fread($fp, 6)) {
+
+        // We expect there to be exactly 6 bytes
+        $out = '';
+        while (strlen($out) < 6) {
+            $out .= fread($fp, 6);
             usleep(1000);
         }
 
